@@ -1,0 +1,160 @@
+<!-- <div class="container">
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-6">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Student Id</th>
+                        <th>Student Name</th>
+                        <th>Show</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(s of studentList;track s.id){
+                    <tr>
+                        <td>{{s.id}}</td>
+                        <td>{{s.name}}</td>
+                        <td>
+                            <input type="button" class="btn btn-info" value="Marksheet"
+                                (click)="editStudent(s)">
+                        </td>
+                        <td>
+                            <input type="button" class="btn btn-info" value="Edit"
+                                (click)="editStudent(s)">&nbsp;
+                            <input type="button" class="btn btn-danger" value="Delete"
+                                (click)="deleteStudent(s.id)">
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-6">
+            <h2>Student Form</h2>
+            <form [formGroup]="studentForm" (ngSubmit)="saveStudent()">
+                <div class="form-floating mb-3">
+                    <input type="number" required [class.is-invalid]="id?.invalid && id?.touched" class="form-control"
+                        formControlName="id" name="id" id="id" placeholder="Student Id">
+                    <label for="id" class="form-label">Student Id</label>
+                    <div *ngIf="id?.invalid && id?.touched">
+                        <small class="text-danger" *ngIf="id?.errors?.['required']">Student id is required</small>
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" required [class.is-invalid]="name?.invalid && name?.touched" class="form-control"
+                        formControlName="name" name="name" id="name" placeholder="Student Name">
+                    <label for="studentname">Student Name</label>
+                    <div *ngIf="name?.invalid && name?.touched">
+                        <small class="text-danger" *ngIf="name?.errors?.['required']">Student name is required</small>
+
+                    </div>
+                </div>
+                <div class="form-floating mb-3 topSpacing">
+                    <button type="submit" *ngIf="!isUpdatebtn" class="btn btn-outline-primary">Add</button> &nbsp;&nbsp;
+                    <button type="submit" *ngIf="isUpdatebtn" class="btn btn-outline-primary">Update</button> &nbsp;&nbsp;
+                    <button type="button" class="btn btn-outline-primary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="container">
+    <h3>Student List</h3>
+    <div class="row">
+      <div class="col-6">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Marks1</th>
+              <th>Marks2</th>
+              <th>Marks3</th>
+              <th>Show</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(s of studentList;track s.id){
+            <tr>
+              <td>{{s.id}}</td>
+              <td>{{s.name}}</td>
+              <td>{{s.marks1}}</td>
+              <td>{{s.marks2}}</td>
+              <td>{{s.marks3}}</td>
+              <td>               
+                 <button type="button" class="btn btn-success" (click)="generateMarksheet(s.id)">Marksheet</button>
+            </td>
+              <td>
+                <button type="button" class="btn btn-info" (click)="editStudent(s)">Edit</button> &nbsp;
+                <button type="button" class="btn btn-danger" (click)="deleteStudent(s.id)">Delete</button>
+
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-6">
+        <h3>Student Form</h3>
+        <form [formGroup]="studentForms" (ngSubmit)="saveStudent()">
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" formControlName="id" required
+              [class.is-invlaid]="id?.invalid && id?.touched" name="id" id="id" placeholder="Student Id">
+            <label for="id">Student Id</label>
+            <div *ngIf="id?.invalid && id?.touched">
+              <small class="text-danger" *ngIf="id?.errors?.['required']">Student Id is required</small>
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="name" required
+              [class.is-invlaid]="name?.invalid && name?.touched" name="name" id="name" placeholder="Student Name">
+            <label for="id">Student Name</label>
+            <div *ngIf="name?.invalid && name?.touched">
+              <small class="text-danger" *ngIf="name?.errors?.['required']">Name is required</small>
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" formControlName="marks1" required
+              [class.is-invlaid]="marks1?.invalid && marks1?.touched" name="marks1" id="marks1" placeholder="Student marks1">
+            <label for="marks1">Marks1</label>
+            <div *ngIf="marks1?.invalid && marks1?.touched">
+              <small class="text-danger" *ngIf="marks1?.errors?.['required']">Marks1 is required</small>
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" formControlName="marks2" required
+              [class.is-invlaid]="marks2?.invalid && marks2?.touched" name="marks2" id="marks2" placeholder="Student marks2">
+            <label for="marks2">Marks2</label>
+            <div *ngIf="marks2?.invalid && marks2?.touched">
+              <small class="text-danger" *ngIf="marks2?.errors?.['required']">Marks2 is required</small>
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" formControlName="marks3" required
+              [class.is-invlaid]="marks3?.invalid && marks3?.touched" name="marks3" id="marks3" placeholder="Student marks">
+            <label for="marks3">Marks3</label>
+            <div *ngIf="marks3?.invalid && marks3?.touched">
+              <small class="text-danger" *ngIf="marks3?.errors?.['required']">Marks3 is required</small>
+            </div>
+          </div>
+          
+          <div class="form-floating mb-3">
+            <button type="submit" *ngIf="!isUpdatebtn" class="btn btn-outline-primary">Add</button> &nbsp;
+            <button type="submit" *ngIf="isUpdatebtn" class="btn btn-outline-primary">Update</button> &nbsp;
+            <button type="button" class="btn btn-outline-primary" (click)="clearForm()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+   </div>
+    
+          

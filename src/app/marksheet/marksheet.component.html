@@ -1,0 +1,56 @@
+<!-- <input type="button" value="GoBack" class="btn btn-primary" (click)="goBack()"> -->
+
+<div class="container topSpacing" >
+    <h3 align="center"> Student MarkSheet</h3>
+  
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th>University Name:</th>
+          <td>Swami Ramanand Teerth Marathwada University</td>
+        </tr>
+        <tr>
+          <th>Student Id:</th>
+          <td>{{ stud?.id }}</td>
+        </tr>
+        <tr>
+          <th>Student Name:</th>
+          <td>{{ stud?.name }}</td>
+        </tr>
+
+        <tr>
+            <th colspan="2">Subjects:</th>
+            <th>Marks:</th>
+        </tr>
+        <tr>
+          <th colspan="2">Angular :</th>
+          <td>{{ stud?.marks1 }}</td>
+        </tr>
+        <tr>
+          <th colspan="2">Java :</th>
+          <td>{{ stud?.marks2 }}</td>
+        </tr>
+        <tr>
+          <th colspan="2">SQL :</th>
+          <td>{{ stud?.marks3 }}</td>
+        </tr>
+        <tr>
+            <th colspan="2 " >Total:</th>
+            <td>{{ calTotal(stud?.marks1, stud?.marks2, stud?.marks3) }}/300</td>
+          </tr>
+        <tr>
+          <th colspan="2">Percentage:</th>
+          <td>{{ calPercentage(stud?.marks1, stud?.marks2, stud?.marks3) }}%</td>
+        </tr>
+        <tr>
+          <th colspan="2">Grade:</th>
+          <td>{{ calGrade(stud?.marks1, stud?.marks2, stud?.marks3) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+  
+  </div>
+
+  <button type="button" class="btn btn-outline-primary" (click)="goBack()">Go Back</button>&nbsp;
+    <button type="button" class="btn btn-outline-primary" (click)="printDetails()">Print</button>&nbsp;
